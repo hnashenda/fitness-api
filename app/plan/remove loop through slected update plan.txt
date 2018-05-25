@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Loopin through an array using a for loop:</p>
+
+<p id="demo"></p>
+
+<script>
+
+var myObj,selected,og_plan_id,done, i, x = "";
+
+var days = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+
+og_plan_id = 3;
+selected={
+0:{"day_id":1,"plan_id":2},
+1:{"day_id":2,"plan_id":2},
+2:{"day_id":1,"plan_id":3},
+3:{"day_id":2,"plan_id":3},
+4:{"day_id":13,"plan_id":4},
+5:{"day_id":10,"plan_id":3}
+};
+
+for (var key_days in days) {
+	done = true;	
+  for (var key in selected){ 
+  	
+          if(selected[key].day_id == days[key_days] && selected[key].plan_id == og_plan_id){
+          	x += days[key_days] + " selected "+ key+"<br>";
+            done = false;
+            break;
+          }         
+  }
+  if(done){
+ 	 x += days[key_days]+"<br>";
+  }
+}
+
+
+document.getElementById("demo").innerHTML = x;
+
+</script>
+
+</body>
+</html>

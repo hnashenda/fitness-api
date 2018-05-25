@@ -1,0 +1,102 @@
+==============================================================================================
+CREATE TABLES
+==============================================================================================
+
+CREATE TABLE users (
+    user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_firstname VARCHAR(100) NOT NULL,
+    user_lastname VARCHAR(100) NOT NULL,
+	user_email VARCHAR(100) NOT NULL,
+	`plan_id` int(11) NOT NULL
+)Engine=InnoDB;
+
+CREATE TABLE plans (
+    plan_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    plan_name VARCHAR(100) NOT NULL      
+)Engine=InnoDB;
+
+CREATE TABLE days (
+    day_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    day_name VARCHAR(100) NOT NULL     
+)Engine=InnoDB;
+
+CREATE TABLE exercises (
+    exercise_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    exercise_name VARCHAR(100) NOT NULL     
+)Engine=InnoDB;
+
+
+CREATE TABLE plans_users (
+    user_id INT NOT NULL,
+    plan_id INT NOT NULL,  
+    PRIMARY KEY  (`user_id`,`plan_id`)
+)Engine=InnoDB;
+
+CREATE TABLE days_plans (
+    day_id INT NOT NULL,
+    plan_id INT NOT NULL,      
+	PRIMARY KEY  (`day_id`,`plan_id`),
+	FOREIGN KEY (plan_id) REFERENCES plans (plan_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (day_id) REFERENCES days (day_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE
+)Engine=InnoDB;
+
+CREATE TABLE days_exercises (
+    day_id INT NOT NULL,
+    exercise_id INT NOT NULL,      
+	PRIMARY KEY  (`day_id`,`exercise_id`),
+	FOREIGN KEY (day_id) REFERENCES days (day_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE,
+	FOREIGN KEY (exercise_id) REFERENCES exercises (exercise_id)
+        ON DELETE CASCADE
+		ON UPDATE CASCADE
+)Engine=InnoDB;
+
+==============================================================================================
+INSERT DATA
+==============================================================================================
+
+
+INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_email`,`plan_id`) VALUES (1, 'Hubert ', 'Nashenda','hubert.nashenda@gmail.com',2);
+INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_email`,`plan_id`) VALUES (2, 'Jon ', 'Doe','jon.doe@gmail.com',2);
+INSERT INTO `users` (`user_id`, `user_firstname`, `user_lastname`, `user_email`,`plan_id`) VALUES (3, 'Arjen ', 'Robben','arjen.robben@gmail.com',2);
+
+
+INSERT INTO `plans` (`plan_id`, `plan_name`) VALUES (1, 'Pauls Plan');
+INSERT INTO `plans` (`plan_id`, `plan_name`) VALUES (2, 'Peters Plan');
+INSERT INTO `plans` (`plan_id`, `plan_name`) VALUES (3, 'Huberts Plan');
+INSERT INTO `plans` (`plan_id`, `plan_name`) VALUES (4, 'Jons Plan');
+INSERT INTO `plans` (`plan_id`, `plan_name`) VALUES (5, 'Arjens Plan');
+
+
+INSERT INTO `days` (`day_id`, `day_name`) VALUES (1, 'Cardio Day');
+INSERT INTO `days` (`day_id`, `day_name`) VALUES (2, 'Upper Body Day');
+INSERT INTO `days` (`day_id`, `day_name`) VALUES (3, 'Abs Day Day');
+INSERT INTO `days` (`day_id`, `day_name`) VALUES (4, 'Buttocks Day');
+
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (1, 'Jumping Jacks');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (2, 'Curtsy Lunges');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (3, 'Jump Lunges');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (4, 'High Knees');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (5, 'Push Ups');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (6, 'Rainbows');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (7, 'Tricep Dips');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (8, 'Planks');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (9, 'Sit Ups');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (10, 'Supermans');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (11, 'High Legs');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (12, 'Cobra Stretch');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (13, 'Simple Squats');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (14, 'Rotational Tou Touches');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (15, 'Sumo Squats');
+INSERT INTO `exercises` (`exercise_id`, `exercise_name`) VALUES (16, 'Bird Dogs');
+
+
+
+================================================================================================
+
+
